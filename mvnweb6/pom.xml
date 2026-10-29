@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>NIC</groupId>
+  <artifactId>mvnweb6</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <!--Тип сборки проекта является WAR-файл-->
+  <packaging>war</packaging>
+
+  <name>mvnweb6 Maven Webapp</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+   <!--
+	JUnit используется для написания и запуска автомат. тестов,
+	а scopetsest ознаачет, что зависимость использоуется только при тестировании проекта.
+    -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.1</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- 
+	 Данную зависимость добавил вручную, так как появлялась ошибка.
+	 Servelet Api даёт классы для разработки java web-приложений
+	 scope provided означает, что библиотека предоставляется сервером
+	 приложений и не включается в итоговой war-файл. 	
+	-->
+    <dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>javax.servlet-api</artifactId>
+	    <version>4.0.1</version>
+    <scope>provided</scope>
+</dependency>
+  </dependencies>
+
+  <build>
+    <finalName>mvnweb6</finalName>
+    <pluginManagement>
+      <plugins>
+		 <plugin>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-javadoc-plugin</artifactId>
+		    <version>3.1.1</version>
+		    <executions>
+		        <execution>
+		            <id>attach-javadocs</id>
+		            <goals>
+		                <goal>javadoc</goal>
+		            </goals>
+		        </execution>
+		    </executions>
+		</plugin>
+      <!--
+    		Плагин очистки проекта.
+    		Удаляет каталог target и результаты предыдущей сборки.
+		-->
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.4.0</version>
+        </plugin>
+        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
+        <!--
+   			 Плагин обработки ресурсов.
+    		Копирует ресурсы проекта в каталог сборки.
+		-->
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.3.1</version>
+        </plugin>
+        <!--
+    		Плагин компиляции Java-кода.
+    		Отвечает за преобразование исходных Java-файлов в байт-код.
+		-->
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.13.0</version>
+        </plugin>
+        <!--Плагин запуска автоматических тестов во время сборки проекта.-->
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.3.0</version>
+        </plugin>
+        <!--
+    		Плагин сборки web-приложения.
+    		Формирует итоговый WAR-файл, содержащий JSP, WEB-INF классы
+		-->
+        <plugin>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>3.4.0</version>
+        </plugin>
+        <!-- отвечает за установку артефактов проекта в локальный репозиторий Maven-->
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>3.1.2</version>
+        </plugin>
+        <!--
+			агружает собранные артефакты (JAR, WAR и т. п.) 
+        	и сопутствующие метаданные в удалённый репозиторий, чтобы их могли 
+       		использовать другие команды и проекты.
+        -->
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>3.1.2</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
