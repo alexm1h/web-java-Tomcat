@@ -7,8 +7,6 @@ target/
 .settings/
 .project
 .classpath
-.metadata/
-Servers/
 
 # IntelliJ
 .idea/
