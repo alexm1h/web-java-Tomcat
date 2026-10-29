@@ -1,17 +1,5 @@
-# Maven
 target/
-*.war
-*.class
-
-# Eclipse
 .settings/
-.project
 .classpath
-
-# IntelliJ
-.idea/
-*.iml
-
-# OS
-.DS_Store
-Thumbs.db
+.project
+.mvn/
